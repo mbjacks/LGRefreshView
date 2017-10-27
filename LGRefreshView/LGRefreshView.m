@@ -583,6 +583,10 @@ static UIColor *kLGRefreshViewTintColor;
             // Set the inset depending on the situation
             if (!isTrackingAndDragging && offsetY < 0 && offsetY >= -self.frame.size.height)
             {
+                if (self.isIgnoreInset || self.isIgnoreOffset) {
+                    return;
+                }
+                
                 _ignoreInset = YES;
                 _ignoreOffset = YES;
                 [_scrollView setContentInset:UIEdgeInsetsMake(self.frame.size.height+_originalContentInset.top, _originalContentInset.left, _originalContentInset.bottom, _originalContentInset.right)];
